@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap with JavaScript</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
+  <link href="fontawesome/css/brands.css" rel="stylesheet">
+  <link href="fontawesome/css/solid.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        for(i=1;i<4;i++){
+            let cardClass="card mb-2 ";
+            let label = ""
+            switch(i){
+                case 1:
+                    cardClass+="bg-primary";
+                    unitlabel ="Grams";
+                    abrevlabel ="gm"
+                    break;
+                case 2:
+                    cardClass+="bg-success";
+                    unitlabel ="Kilograms";
+                    abrevlabel ="kg"
+                    break;
+                case 3:
+                    cardClass+="bg-danger"
+                    unitlabel ="Ounces"
+                    abrevlabel ="oz"
+                    break;
+                    default:
+                    cardClass="bg-primary";
+
+            }
+            $("#result").append(`
+                <div id="card_${i}" class="${cardClass}">
+                            <div class="card-body">
+                                <h4>${unitlabel}</h4>
+                                <div id="${abrevlabel}Output"></div>
+                            </div>
+                </div>
+            
+            
+            `);
+        }
+        $("#result").hide();
+        $("#lbsInput").keyup(
+            
+            function(){
+                let lbs = $(this).val();
+                $("#result").show();
+                $("#gmOutput").text(lbs/0.00220462);
+                $("#kgOutput").text(lbs/2.20462)  ;
+                $("#ozOutput").text(lbs*16) ;
+            }
+        );
+    });
+    
+
+  </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 id="head1" class="display-4 text-center">Weight Computing</h1>
+                <form>
+                    <div class="form-group mb-2">
+                        <input type="number" name="lbsInput" id="lbsInput" placeholder="Enter your weight in lbs..." class="form-control form-control-lg">
+
+                    </div>
+                </form>
+                <div id="result">
+                   
+                    <!-- <div class="card bg-primary mb-2">
+                        <div class="card-body">
+                            <h4>Grams:</h4>
+                            <div id="gramsOutput"></div>
+                        </div>
+                    </div>
+                    <div class="card bg-success mb-2">
+                        <div class="card-body">
+                            <h4>Kilograms:</h4>
+                            <div id="kgOutput"></div>
+                        </div>
+                    </div>
+                    <div class="card bg-danger mb-2">
+                        <div class="card-body">
+                            <h4>Ounces:</h4>
+                            <div id="ozOutput"></div>
+                        </div> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
